@@ -1,7 +1,10 @@
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,11 +54,21 @@ class PilhaTestFixture {
 
 	@Test
 	public void testNaoAdicionaAlemLimite() {
-		pilha.push(new Livro("A Volta ao mundo"));
-		Livro livro = pilha.pop();
-
-		assertEquals("O Sol", livro.getTitulo());
-		System.out.println("executou testNaoAdicionaAlemLimite()");
+		try {
+			pilha.push(new Livro("A Volta ao mundo"));
+			fail();
+		} catch (ArrayStoreException e) {
+			assertTrue(true);
+		}
+		
+	}
+	
+	@Test
+	public void testNaoAdicionaAlemLimiteException() {
+		Assertions.assertThrows(ArrayStoreException.class, () -> {
+			pilha.push(new Livro("A Volta ao mundo"));
+			System.out.println("executou testNaoAdicionaAlemLimiteException()");
+		}, "testNaoAdicionaAlemLimiteException error was expected");
 	}
 
 	@Test

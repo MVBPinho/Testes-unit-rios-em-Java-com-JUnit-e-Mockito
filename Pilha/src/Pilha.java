@@ -7,7 +7,7 @@ public class Pilha {
 
 	public void push(Livro livro) {
 		if (pilha.size() >= limite)
-			return;
+			throw new ArrayStoreException();
 
 		if (!livro.getTitulo().startsWith("A") && !livro.getTitulo().startsWith("O"))
 			return;
