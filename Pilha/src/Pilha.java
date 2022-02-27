@@ -16,7 +16,10 @@ public class Pilha {
 	}
 
 	public Livro pop() {
-		return pilha.get(pilha.size() - 1);
+		Livro livro = pilha.get(pilha.size()-1);
+		pilha.remove(pilha.size()-1);
+
+		return livro;
 	}
 
 	public int count() {
